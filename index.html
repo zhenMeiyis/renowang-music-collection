@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王铮亮音乐合集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>🎹 王铮亮音乐合集</h1>
+            <p class="subtitle">共收录 <span id="totalCount">0</span> 首歌曲</p>
+        </header>
+
+        <!-- 控制面板 -->
+        <section class="control-panel">
+            <!-- 搜索栏 -->
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索歌名、歌手、专辑..." autocomplete="off">
+                    <button id="searchBtn">搜索</button>
+                    <!-- 新增清空搜索按钮 -->
+                    <button id="clearSearchBtn" class="clear-search-btn" style="display: none;">清空</button>
+                </div>
+                <!-- 搜索历史 -->
+                <div class="search-history" id="searchHistory">
+                    <div class="history-header">
+                        <span>搜索历史</span>
+                        <button class="clear-btn" onclick="clearHistory()">清空</button>
+                    </div>
+                    <div class="history-list" id="historyList"></div>
+                </div>
+            </div>
+
+            <!-- 分类筛选 -->
+            <div class="filter-section">
+                <div class="filter-group">
+                    <span class="filter-label">歌手数量：</span>
+                    <div class="filter-options" id="singerFilter">
+                        <button class="filter-btn active" data-value="all">全部</button>
+                        <button class="filter-btn" data-value="独唱">独唱</button>
+                        <button class="filter-btn" data-value="双人">双人</button>
+                        <button class="filter-btn" data-value="多人">多人</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">发行年份：</span>
+                    <select class="filter-select" id="yearFilter">
+                        <option value="all">全部年份</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">专辑：</span>
+                    <select class="filter-select" id="albumFilter">
+                        <option value="all">全部专辑</option>
+                    </select>
+                </div>
+
+                <!-- 新增：流派筛选 -->
+                <div class="filter-group">
+                    <span class="filter-label">流派：</span>
+                    <select class="filter-select" id="genreFilter">
+                        <option value="all">全部流派</option>
+                    </select>
+                </div>
+
+                <!-- 新增：语言筛选 -->
+                <div class="filter-group">
+                    <span class="filter-label">语言：</span>
+                    <select class="filter-select" id="languageFilter">
+                        <option value="all">全部语言</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-label">排序：</span>
+                    <div class="filter-options" id="sortControls">
+                        <button class="filter-btn sort-btn active" data-field="time" data-order="desc">时间↓</button>
+                        <button class="filter-btn sort-btn" data-field="time" data-order="asc">时间↑</button>
+                        <button class="filter-btn sort-btn" data-field="name" data-order="asc">歌名↑</button>
+                        <button class="filter-btn sort-btn" data-field="name" data-order="desc">歌名↓</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 歌曲列表 -->
+        <section class="song-list-section" id="listSection">
+            <div class="list-header">
+                <h2>歌曲列表</h2>
+                <span class="result-count" id="resultCount"></span>
+            </div>
+            <div class="song-grid" id="songGrid"></div>
+        </section>
+
+        <!-- 歌曲详情页 -->
+        <section class="song-detail" id="detailSection" style="display: none;">
+            <button class="back-btn" onclick="backToList()">← 返回列表</button>
+            
+            <div class="detail-card">
+                <!-- 歌名居中 -->
+                <h1 class="detail-title" id="detailTitle"></h1>
+                
+                <!-- 歌曲基本信息 -->
+                <div class="info-section">
+                    <h3>📋 歌曲信息</h3>
+                    <div class="info-grid" id="infoGrid"></div>
+                </div>
+                
+                <!-- 歌词居中垂直展开 -->
+                <div class="lyrics-section">
+                    <h3>🎵 歌词</h3>
+                    <div class="lyrics-content" id="lyricsContent"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
